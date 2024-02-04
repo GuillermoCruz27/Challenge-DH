@@ -6,4 +6,10 @@ applicantApiRoute.get('/',applicantApiController.list);
 
 applicantApiRoute.get('/:id',applicantApiController.show);
 
+applicantApiRoute.post('/',applicantApiController.store);
+
+applicantApiRoute.put('/:id',applicantApiController.update);
+
+applicantApiRoute.delete('/:id',applicantApiController.destroy);
+
 module.exports = applicantApiRoute;

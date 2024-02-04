@@ -7,7 +7,7 @@ const applicantApiController = {
       if (applicants.length > 0) {
         applicants = applicants.map((applicant) => {
           applicant.image =
-            'http://localhost:3000/img/applicant/' + awpplicant.image;
+            'http://localhost:3000/img/applicant/' + applicant.image;
           return applicant;
         });
         return res.status(200).json({
@@ -38,6 +38,68 @@ const applicantApiController = {
     } catch (error) {
       console.error('Error al consultar un aplicante', error);
       res.status(500).json({ error: 'Error al consultar un aplicante.' });
+    }
+  },
+  store:async (req, res) => {
+    try {
+        const nuevo = await db.Applicant.create({
+            dni: req.body.dni,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            url_linkedin: req.body.url_linkedin || null,
+            birthdate: req.body.birthdate,
+            gender: req.body.gender,
+            image: req.body.image || null
+        });
+        return res.status(201).json(nuevo);
+    } catch (error) {
+        console.error("Error al crear un aplicante", error);
+        res.status(500).json({ error: "Error al crear un aplicante." });
+    }
+  },
+  update:async (req, res) => {
+    try {
+        let applicant= await db.Applicant.findByPk(req.params.id);
+        if (!applicant) {
+            res.status(404).json({ error: "Applicante no encontrado." });
+            return;
+        }
+        await db.Applicant.update({
+            dni: req.body.dni,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            url_linkedin: req.body.url_linkedin || applicant.url_linkedin,
+            birthdate: req.body.birthdate,
+            gender: req.body.gender,
+            image: req.body.image || applicant.image
+        },{
+            where: {
+                id: req.params.id
+            }
+        });
+        applicant = await db.Applicant.findByPk(req.params.id);
+        return res.status(201).json(applicant);
+    } catch (error) {
+        console.error("Error al actualizar a un aplicante", error);
+        res.status(500).json({ error: "Error al actualizar un a un aplicante." });
+    }
+  },
+  destroy:async (req, res) => {
+    try {
+        const applicant = await db.Applicant.findByPk(req.params.id);
+        if (!applicant) {
+          res.status(404).json({ error: "Applicante no encontrado." });
+          return;
+        }
+        await applicant.destroy();
+        res.json({ mensaje: "Applicante eliminado con éxito." });
+    } catch (error) {
+        console.error("Error al eliminar al Applicante: ", error);
+        res.status(500).json({ error: "Error al eliminar al Applicante." });
     }
   },
 };
