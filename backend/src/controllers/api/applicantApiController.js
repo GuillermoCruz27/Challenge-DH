@@ -102,6 +102,28 @@ const applicantApiController = {
         res.status(500).json({ error: "Error al eliminar al Applicante." });
     }
   },
+  searchByProfession: async (req, res) => {
+    try {
+        applicants = await db.Applicant.findAll({
+            include: [{
+                model: db.Profession,
+                attributes: ["name"],
+                through: { attributes: [] }
+            }],
+            where: {
+                "$Professions.name$" : req.params.name
+            }
+        });
+        return res.status(200).json({
+            count: applicants.length,
+            applicants: applicants,
+            status: 200
+        });
+    } catch (error) {
+        console.error("Error al realizar la busqueda.", error);
+        res.status(500).json({error: "Error al realizar la busqueda."});
+    }
+  }
 };
 
 module.exports = applicantApiController;
