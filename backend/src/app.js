@@ -6,6 +6,10 @@ const applicantApiRoute = require('./routes/api/applicantApiRoute');
 const professionApiRoute = require('./routes/api/professionApiRoute');
 
 const methodOverride = require('method-override');
+const env = require('dotenv');
+
+env.config();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
@@ -19,7 +23,7 @@ let corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.listen(3000, () => console.log('servidor escuchando en el puerto 3000'));
+app.listen(PORT, () => console.log(`servidor escuchando en el puerto ${PORT}`));
 
 app.use('/api/applicant', applicantApiRoute);
 app.use('/api/profession', professionApiRoute);

@@ -11,8 +11,15 @@ const applicantApiController = {
           return applicant;
         });
         return res.status(200).json({
-          count: applicants.length,
-          applicants: applicants,
+          meta: {
+            error: false,
+            count: applicants.length,
+            status: 200,
+            url: 'http://localhost:3000/api/applicant'
+          },
+          data: {
+            applicants: applicants,
+          }
         });
       } else {
         res.status(404).json({ error: 'Sin aplicantes.' });
@@ -28,10 +35,15 @@ const applicantApiController = {
       if (applicant) {
         applicant.image =
           'http://localhost:3000/img/applicant/' + applicant.image;
-        return res.status(200).json({
-          applicant: applicant,
-          status: 200,
-        });
+          return res.status(200).json({
+            meta: {
+              error: false,
+              count: 1,
+              status: 200,
+              url: 'http://localhost:3000/api/applicant/'+req.params.id
+            },
+            data: applicant
+          });
       } else {
         res.status(404).json({ error: 'Aplicante no encontrado.' });
       }
@@ -107,17 +119,23 @@ const applicantApiController = {
         applicants = await db.Applicant.findAll({
             include: [{
                 model: db.Profession,
-                attributes: ["name"],
+                attributes: ["id"],
                 through: { attributes: [] }
             }],
             where: {
-                "$Professions.name$" : req.params.name
+                "$Professions.id$" : req.params.id
             }
         });
         return res.status(200).json({
+          meta: {
+            error: false,
             count: applicants.length,
+            status: 200,
+            url: 'http://localhost:3000/api/applicant/search'
+          },
+          data: {
             applicants: applicants,
-            status: 200
+          }
         });
     } catch (error) {
         console.error("Error al realizar la busqueda.", error);
