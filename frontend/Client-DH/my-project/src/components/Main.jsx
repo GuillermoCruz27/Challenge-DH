@@ -7,7 +7,7 @@ function Main() {
   
     return (
       <>
-        <main class="content-wrap">
+        <main class="content-wrap p-12 overflow-auto">
             <Article/>
         </main>
       </>

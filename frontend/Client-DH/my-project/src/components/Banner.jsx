@@ -7,11 +7,11 @@ function Banner() {
   
     return (
       <>
-        <figure className="user">
-          <div className="user-avatar">
-            <img src={Logo} alt="Logo Digital House	" />
+        <figure className="user h-20 flex items-center justify-start px-12">
+          <div className="user-avatar h-10 w-14 overflow-hidden">
+            <img src={Logo} className="h-full" alt="Logo Digital House	" />
           </div>
-          <figcaption>
+          <figcaption className='pl-3 text-black text-sm font-semibold'>
             Digital House
           </figcaption>
         </figure>

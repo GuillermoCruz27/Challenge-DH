@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from "react";
-import 'tailwindcss/tailwind.css';
 import Banner from './Banner';
 
 function Aside() {
@@ -8,38 +7,38 @@ function Aside() {
   
     return (
       <>
-        <header className="menu-wrap">
+        <header id="header" className="grid-area-menu bg-white pb-12 overflow-auto border-r border-solid border-gray-300">
         <Banner/>
-        <nav>
-          <section className="menu">
-            <h3>Opciones</h3>
-            <ul>
-              <li>
-                <a href="#">
+        <nav className='block px-12'>
+          <section className="menu block pt-12">
+            <h3 className='text-sm uppercase text-blue-500 font-semibold'>Opciones</h3>
+            <ul className='block'>
+              <li className='block mt-4'>
+                <a href="#" className='flex items-center font-medium font-semibold'>
                   <i className="bi bi-building text-base text-blue-500"/>
                   - Empresas
                 </a>
               </li>
-              <li>
-                <a href="#">
+              <li className='block mt-4'>
+                <a href="#" className='flex items-center font-medium font-semibold'>
                   <i className="bi bi-person text-base text-blue-500"/>
                   - Aspirantes
                 </a>
               </li>
-              <li>
-                <a href="#">
+              <li className='block mt-4'>
+                <a href="#" className='flex items-center font-medium font-semibold'>
                   <i className="bi bi-list-check" />
                   - Profesiones
                 </a>
               </li>
-              <li>
-                <a href="#">
+              <li className='block mt-4'>
+                <a href="#" className='flex items-center font-medium font-semibold'>
                   <i className="bi bi-person-vcard" style={{fontSize: '1.2rem', color: 'cornflowerblue'}} />
                   - Postulate aquí
                 </a>
               </li>
-              <li>
-                <a href="#">
+              <li className='block mt-4'>
+                <a href="#" className='flex items-center font-medium  font-semibold'>
                   <i className="bi bi-chat-left-text" />
                   - Contacto
                 </a>
