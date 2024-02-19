@@ -1,10 +1,20 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
-
+.body{
+  color: #99a0b0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #f5f5fa;
+    font-size: 16px;
+    line-height: 120%;
+    font-family: Open Sans, Helvetica, sans-serif;
+}
+.dashboard{
+    grid-template-columns: 300px auto;
+    grid-template-rows: 80px auto;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -17,7 +27,21 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
+.grid {
+  grid-template-areas:
+    'menu search'
+    'menu content';
+}
+#header{
+  grid-area: menu;
+  width: 300px;
+}
+#section{
+  grid-area: search;
+}
+.content-wrap{
+  grid-area: content;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

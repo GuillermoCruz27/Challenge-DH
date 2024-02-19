@@ -2,3 +2,5 @@ node_modules/
 
 
 src/database/config/config.js
+
+.env

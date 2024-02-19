@@ -1,16 +1,19 @@
-import React from "react";
-import "../assets/css/Main.css";
+import React from 'react'
+import { useState } from "react";
+import Article from './Article';
+import Section from './Section';
 
 function Main() {
-  return (
-    <>
-      <main>
-        <div className="main-container">
-          <h6>Main</h6>
-        </div>
-      </main>
-    </>
-  );
-}
-
-export default Main;
+    const [count, setCount] = useState(0);
+  
+    return (
+      <>
+        <main class="content-wrap p-12 overflow-auto">
+            <Article/>
+            <Section/>
+        </main>
+      </>
+    );
+  }
+  
+  export default Main;
