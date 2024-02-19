@@ -10,9 +10,10 @@ import Foto6 from "../assets/img/foto6.jpg";
 const fotos = [Foto1, Foto1, Foto2, Foto3, Foto4, Foto5, Foto6];
 
 function Section() {
-  const { dataApplicants } = useFetch("http://localhost:3000/api/applicant");
+  const { dataApplicants, loading } = useFetch("http://localhost:3000/api/applicant");
   return (
     <section className="content aspirantes">
+      {loading && <h2>Cargando...</h2> /*Renderizara el h2 hasta que termine de cargar la info*/}
       {dataApplicants?.map((applicant) => (
         <div className="person-box shadow p-3 mb-5 bg-body-tertiary rounded">
           <div className="box-avatar">
