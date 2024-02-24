@@ -15,7 +15,7 @@ const applicantApiController = {
             error: false,
             count: applicants.length,
             status: 200,
-            url: 'http://localhost:3000/api/applicant'
+            url: 'http://localhost:3000/api/applicant',
           },
           data: {
             applicants: applicants,

@@ -1,5 +1,3 @@
-//import React, { Component } from "react";
-import { useState, useEffect } from "react";
 import { useFetch } from "../useFetch";
 import Foto1 from "../assets/img/foto1.jpg";
 import Foto2 from "../assets/img/foto2.jpg";
@@ -9,11 +7,15 @@ import Foto5 from "../assets/img/foto5.jpg";
 import Foto6 from "../assets/img/foto6.jpg";
 const fotos = [Foto1, Foto1, Foto2, Foto3, Foto4, Foto5, Foto6];
 
+/* Esta manera de renderizado se utiliza para paginas pequeñas y/o poco movimiento de datos */
+
 function Section() {
-  const { dataApplicants, loading } = useFetch("http://localhost:3000/api/applicant");
+  const { dataApplicants, loading, error, handleCancelRequest } = useFetch("http://localhost:3000/api/applicant");
   return (
     <section className="content aspirantes">
-      {loading && <h2>Cargando...</h2> /*Renderizara el h2 hasta que termine de cargar la info*/}
+      {<button onClick={handleCancelRequest}>Cancel request</button>  /*Boton para comprobar caudno cambia el request*/}
+      {loading && <h1>Loading...</h1> /*Avisa al usuario que la pagina esta cargando*/}
+      {error && <h2>Error: {error}</h2> /*Avisa al usuario que la pagina esta cargando*/}
       {dataApplicants?.map((applicant) => (
         <div className="person-box shadow p-3 mb-5 bg-body-tertiary rounded">
           <div className="box-avatar">
