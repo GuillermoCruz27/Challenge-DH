@@ -54,11 +54,9 @@ module.exports = (Sequelize, DataTypes) => {
   const Applicant = Sequelize.define(alias, cols, config);
 
   Applicant.associate = (models) => {
-    Applicant.belongsToMany(models.Profession, {
-      through: 'applicant_profession',
-      foreignKey: 'applicant_id',
-      otherKey: 'profession_id',
-      timestamps: true,
+    Applicant.belongsTo(models.Profession, {
+      as: 'profession',
+      foreignKey: 'profession_id'
     });
   };
 

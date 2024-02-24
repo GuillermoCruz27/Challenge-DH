@@ -1,9 +1,15 @@
-const db = require('../../database/models');
+const {Applicant, Profession} = require('../../database/models');
 
 const applicantApiController = {
   list: async (req, res) => {
     try {
-      applicants = await db.Applicant.findAll();
+      applicants = await Applicant.findAll({
+        include: [{
+          model: Profession,
+          as: "profession",
+          attributes: ["name"]
+      }]
+      });
       if (applicants.length > 0) {
         applicants = applicants.map((applicant) => {
           applicant.image =
@@ -31,7 +37,13 @@ const applicantApiController = {
   },
   show: async (req, res) => {
     try {
-      applicant = await db.Applicant.findByPk(req.params.id);
+      applicant = await Applicant.findByPk(req.params.id,{
+        include: [{
+          model: Profession,
+          as: "profession",
+          attributes: ["name"]
+        }]
+      });
       if (applicant) {
         applicant.image =
           'http://localhost:3000/img/applicant/' + applicant.image;
@@ -54,16 +66,17 @@ const applicantApiController = {
   },
   store:async (req, res) => {
     try {
-        const nuevo = await db.Applicant.create({
+        const nuevo = await Applicant.create({
+            profession_id: req.body.profession_id,
             dni: req.body.dni,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
             phone_number: req.body.phone_number,
-            url_linkedin: req.body.url_linkedin || null,
+            url_linkedin: req.body.url_linkedin || "",
             birthdate: req.body.birthdate,
             gender: req.body.gender,
-            image: req.body.image || null
+            image: req.body.image || ""
         });
         return res.status(201).json(nuevo);
     } catch (error) {
@@ -73,21 +86,22 @@ const applicantApiController = {
   },
   update:async (req, res) => {
     try {
-        let applicant= await db.Applicant.findByPk(req.params.id);
+        let applicant= await Applicant.findByPk(req.params.id);
         if (!applicant) {
             res.status(404).json({ error: "Applicante no encontrado." });
             return;
         }
         await db.Applicant.update({
+            profession_id: req.body.profession_id,
             dni: req.body.dni,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
             phone_number: req.body.phone_number,
-            url_linkedin: req.body.url_linkedin || applicant.url_linkedin,
+            url_linkedin: req.body.url_linkedin || "",
             birthdate: req.body.birthdate,
             gender: req.body.gender,
-            image: req.body.image || applicant.image
+            image: req.body.image || ""
         },{
             where: {
                 id: req.params.id
@@ -102,7 +116,7 @@ const applicantApiController = {
   },
   destroy:async (req, res) => {
     try {
-        const applicant = await db.Applicant.findByPk(req.params.id);
+        const applicant = await Applicant.findByPk(req.params.id);
         if (!applicant) {
           res.status(404).json({ error: "Applicante no encontrado." });
           return;
@@ -116,14 +130,14 @@ const applicantApiController = {
   },
   searchByProfession: async (req, res) => {
     try {
-        applicants = await db.Applicant.findAll({
+        applicants = await Applicant.findAll({
             include: [{
-                model: db.Profession,
-                attributes: ["id"],
-                through: { attributes: [] }
+                model: Profession,
+                as: "profession",
+                attributes: ["name"]
             }],
             where: {
-                "$Professions.id$" : req.params.id
+                "$Profession.id$" : req.params.id
             }
         });
         return res.status(200).json({
