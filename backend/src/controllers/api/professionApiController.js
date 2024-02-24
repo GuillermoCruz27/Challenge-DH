@@ -1,9 +1,9 @@
-const db = require('../../database/models');
+const {Profession} = require('../../database/models');
 
 const professionApiController = {
   list: async (req, res) => {
     try {
-      professions = await db.Profession.findAll();
+      professions = await Profession.findAll();
       if (professions.length > 0) {
         return res.status(200).json({
           professions: professions,
@@ -16,29 +16,27 @@ const professionApiController = {
       res.status(500).json({ error: 'Error al consultar profesiones.' });
     }
   },
-  search: async (req, res) => {
-    try {
-      const applicant = await db.Applicant.findByPk(req.params.id, {
-        include: {
-          model: db.Profession,
-          through: {
-            attributer: [],
-          },
-        },
-      });
+  // search: async (req, res) => {
+  //   try {
+  //     const applicant = await db.Applicant.findByPk(req.params.id, {
+  //       include: {
+  //         model: db.Profession,
+  //         as: "profession",
+  //       },
+  //     });
 
-      const profession = applicant.Professions.map(
-        (profession) => profession.name,
-      );
+  //     const profession = applicant.Professions.map(
+  //       (profession) => profession.name,
+  //     );
 
-      return res.status(200).json({
-        profession: profession,
-      });
-    } catch (error) {
-      console.error('Error al consultar una profesión', error);
-      res.status(500).json({ error: 'Error al consultar una profesión.' });
-    }
-  },
+  //     return res.status(200).json({
+  //       profession: profession,
+  //     });
+  //   } catch (error) {
+  //     console.error('Error al consultar una profesión', error);
+  //     res.status(500).json({ error: 'Error al consultar una profesión.' });
+  //   }
+  // },
 };
 
 module.exports = professionApiController;
