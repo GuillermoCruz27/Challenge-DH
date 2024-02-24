@@ -6,7 +6,6 @@ const apiData = fetchData("http://localhost:3000/api/applicant");
 /* Render as you fetch */
 
 function Section() {
-  const { handleCancelRequest } = useFetch("http://localhost:3000/api/applicant");
   const data = apiData.read();
   console.log(data.data.applicants);
   return (
