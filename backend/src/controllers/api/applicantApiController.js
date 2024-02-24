@@ -91,7 +91,7 @@ const applicantApiController = {
             res.status(404).json({ error: "Applicante no encontrado." });
             return;
         }
-        await db.Applicant.update({
+        await Applicant.update({
             profession_id: req.body.profession_id,
             dni: req.body.dni,
             first_name: req.body.first_name,
@@ -107,11 +107,11 @@ const applicantApiController = {
                 id: req.params.id
             }
         });
-        applicant = await db.Applicant.findByPk(req.params.id);
+        applicant = await Applicant.findByPk(req.params.id);
         return res.status(201).json(applicant);
     } catch (error) {
         console.error("Error al actualizar a un aplicante", error);
-        res.status(500).json({ error: "Error al actualizar un a un aplicante." });
+        res.status(500).json({ error: "Error al actualizar a un aplicante." });
     }
   },
   destroy:async (req, res) => {
