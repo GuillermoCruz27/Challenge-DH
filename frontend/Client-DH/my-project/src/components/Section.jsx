@@ -13,16 +13,16 @@ function Section() {
     <section className="content-aspirantes">
       <Suspense fallback={<h1>Loading...</h1>}>
         <h1 className="px-1 pb-2 w-2.5 text-xl my-7">Aspirantes</h1>
+        <div className="flex flex-row">
         {dataApplicants.data.applicants?.map((applicant) => (
-          <div className="person-box shadow p-3 mb-5 bg-body-tertiary rounded">
-            <div className="box-avatar">
-              <img src={applicant.image} alt="Gloria" />
+          <div className="person-box shadow p-3 bg-body-tertiary rounded  px-3 py-3 ">
+            <div className="box-avatar px-2">
+              <img className="w-72" src={applicant.image} alt="Gloria" />
             </div>
             <div className="box-bio">
-              <h2 className="bio-name">{applicant.first_name}</h2>
-              <p className="bio-position">{applicant.profession.name}</p>
-            </div>
-            <div className="box-actions">
+              <h2 className="bio-name py-1.5">{applicant.first_name}</h2>
+              <p className="bio-position py-1.5">{applicant.profession.name}</p>
+            <div className="box-actions py-1.5">
               <button>
                 <i className="bi bi-star" />
               </button>
@@ -33,8 +33,10 @@ function Section() {
                 <i className="bi bi-envelope" />
               </button>
             </div>
+            </div>
           </div>
         ))}
+        </div>
       </Suspense>
 
       <Suspense>
