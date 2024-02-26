@@ -27,19 +27,19 @@ function Aside() {
               </li>
               <li className='block mt-4'>
                 <a href="#" className='flex items-center font-medium font-semibold'>
-                  <i className="bi bi-list-check" />
+                  <i className="bi bi-list-check text-blue-500" />
                   - Profesiones
                 </a>
               </li>
               <li className='block mt-4'>
                 <a href="#" className='flex items-center font-medium font-semibold'>
-                  <i className="bi bi-person-vcard" style={{fontSize: '1.2rem', color: 'cornflowerblue'}} />
+                  <i className="bi bi-person-vcard text-blue-500" style={{fontSize: '1.2rem', color: 'cornflowerblue'}} />
                   - Postulate aquí
                 </a>
               </li>
               <li className='block mt-4'>
                 <a href="#" className='flex items-center font-medium  font-semibold'>
-                  <i className="bi bi-chat-left-text" />
+                  <i className="bi bi-chat-left-text text-blue-500" />
                   - Contacto
                 </a>
               </li>
