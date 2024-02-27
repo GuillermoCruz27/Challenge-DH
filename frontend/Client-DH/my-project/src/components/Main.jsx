@@ -8,7 +8,7 @@ function Main() {
   
     return (
       <>
-        <main class="content-wrap p-12 overflow-auto">
+        <main class="content-wrap p-12 overflow-auto scroll-smooth">
             <Article/>
             <Section/>
         </main>
