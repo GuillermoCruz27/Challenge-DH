@@ -11,7 +11,6 @@ function Head() {
           <link rel="stylesheet" href="../assets//css/normalize.min.css" />
           <link rel="stylesheet" href="../assets//css/font-awesome.min.css" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
-          <link rel="stylesheet" href="/css/Section.css" />
       </>
     );
   }

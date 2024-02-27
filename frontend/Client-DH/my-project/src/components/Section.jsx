@@ -13,7 +13,7 @@ function Section() {
     <section className="content-aspirantes">
       <Suspense fallback={<h1>Loading...</h1>}>
         <nav id="applicants" className="pt-80 pt-80 flex flex-col flex-1 bg-neutral-100 items-center ">
-          <h1 className="text-xl my-7">Aspirantes</h1>
+          <h1 className="text-2xl my-7">Aspirantes</h1>
           <div  className="flex flex-row">
             {dataApplicants.data.applicants?.map((applicant) => (
               <div className="person-box shadow p-3 bg-body-tertiary rounded px-3 py-3 ">
@@ -43,10 +43,10 @@ function Section() {
         </nav>
       </Suspense>
 
-      <Suspense>
+      <Suspense fallback={<h1>Loading...</h1>}>
         <nav id="professions">
           <div className="pt-80 flex flex-col flex-1 bg-neutral-100 items-center ">
-            <h1 className="text-xl my-7">Profesiones</h1>
+            <h1 className="text-2xl my-7">Profesiones</h1>
             <ul className="w-96 w-full text-center">
               {dataProfessions.professions?.map((profession) => (
                 <a className="container" href="">
