@@ -1,26 +1,31 @@
-import Head from "./components/Head.jsx";
-import Header from "./components/Haeder.jsx"
-import Aside from "./components/Aside.jsx";
-import 'tailwindcss/tailwind.css';
-import Main from "./components/Main.jsx";
-import "./App.css";
-
+import { useState } from 'react'
+import '../src/assets/css/App2.css'
+import Navbar from './components2/Navbar';
+import Companies from './components2/Companies';
+import Postulation from './components2/Postulation';
+import Applicants from './components2/Applicants';
+import Home from './components2/Home';
+import { Route, Routes } from "react-router-dom";
+import Professions from './components2/Professions';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
-  //const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div className="body">
-        <div className="dashboard grid w-full h-screen grid grid-cols-2 grid-rows-2 gap-0">
-          <Head />
-          <Header />
-          <Aside />
-          <Main />
-        </div>
-      </div>
+			 <div className="App">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/empresas" element={<Companies />} />
+        <Route path="/postulateAqui" element={<Postulation />} />
+        <Route path="/aplicantes" element={<Applicants />} />
+        <Route path="/profesiones" element={<Professions />} />
+      </Routes>
+    </div>
     </>
-  );
+  )
 }
 
 export default App;
