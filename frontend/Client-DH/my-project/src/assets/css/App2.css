@@ -1,9 +1,20 @@
 .App {
-    background-color: #fefefe;
-    height: 100vh;
+  background-color: #fefefe;
+  height: 100vh;
+  width: 100%;
+}
+
+#banner,
+#search {
+  width: 100%;
+}
+
+#postulation-form {
+  width: 60%;
+}
+
+@media (max-width: 480px) {
+  #postulation-form {
     width: 100%;
   }
-  
-  #banner, #search{
-    width: 100%;
-  }
+}

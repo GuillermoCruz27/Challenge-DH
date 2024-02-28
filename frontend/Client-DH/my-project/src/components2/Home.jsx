@@ -4,7 +4,7 @@ import Article from "./Article";
 export const Home = () => {
   return (
   <div className="container">
-    <Article />;
+    <Article />
   </div>
   );
 };
