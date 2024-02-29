@@ -18,6 +18,7 @@ export const Applicants = () => {
         <div className="card-body">
           <h5 className="card-title">Aspirante</h5>
           <p className="card-text">{applicant.first_name}</p>
+          <p className="card-text">{applicant.profession.name}</p>
           <div className="d-flex justify-content-end">
             <a href="#" className="btn btn-primary m-1"><FontAwesomeIcon icon={faStar} /></a>
             <a href="#" className="btn btn-primary m-1"><FontAwesomeIcon icon={faMessage} /></a>

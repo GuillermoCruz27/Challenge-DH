@@ -44,20 +44,7 @@ function Section() {
       </Suspense>
 
       <Suspense fallback={<h1>Loading...</h1>}>
-        <nav id="professions">
-          <div className="pt-80 flex flex-col flex-1 bg-neutral-100 items-center ">
-            <h1 className="text-2xl my-7">Profesiones</h1>
-            <ul className="w-96 w-full text-center">
-              {dataProfessions.professions?.map((profession) => (
-                <a className="container" href="">
-                  <li className="my-5 opacity-70 shadow-md text-xl border-solid border-2 border-slate-600">
-                    {profession.name}
-                  </li>
-                </a>
-              ))}
-            </ul>
-          </div>
-        </nav>
+              
       </Suspense>
     </section>
   );
