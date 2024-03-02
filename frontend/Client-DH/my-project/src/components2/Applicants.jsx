@@ -11,9 +11,9 @@ const apiDataApplicants = fetchData("http://localhost:3000/api/applicant");
 export const Applicants = () => {
   const dataApplicants = apiDataApplicants.read();
   return (
-  <div className="mt-2" id="applicants">
+  <div className="mt-2 row justify-content-center" id="applicants">
     {dataApplicants.data.applicants?.map((applicant) => (
-      <div className="card m-2" style={{ width: '18rem' }}>
+      <div className="card m-2" style={{ width: '16rem' }}>
         <img className="w-72" src={applicant.image+".jpg"} alt="image" />
         <div className="card-body">
           <h5 className="card-title">Aspirante</h5>
