@@ -4,7 +4,7 @@
 
 nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #060607;
     color: white;
@@ -61,11 +61,7 @@ nav .menu span {
     border-radius: 0.2rem;
 }
 
-#search{
-    width: 350px;
-}
-
-@media (max-width: 480px) {
+@media (max-width: 780px) {
     nav .menu {
         display: flex;
     }
@@ -93,9 +89,5 @@ nav .menu span {
 
     nav ul li a {
         margin: 0.2rem 0.5rem;
-    }
-
-    #search{
-        width: 100%;
     }
 }
