@@ -1,11 +1,11 @@
 import "../src/assets/css/App2.css";
-import Navbar from "./components2/Navbar";
-import Companies from "./components2/Companies";
-import Postulation from "./components2/Postulation";
-import Applicants from "./components2/Applicants";
-import Home from "./components2/Home";
-import Professions from "./components2/Professions";
-import Layout from "./components2/Layout";
+import Navbar from "./components/Navbar";
+import Companies from "./components/Companies";
+import Postulation from "./components/Postulation";
+import Applicants from "./components/Applicants";
+import Home from "./components/Home";
+import Professions from "./components/Professions";
+import Layout from "./components/Layout";
 import { Route, Routes, Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
