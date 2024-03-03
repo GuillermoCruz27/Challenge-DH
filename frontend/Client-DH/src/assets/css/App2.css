@@ -1,0 +1,30 @@
+.App {
+  background-color: #fefefe;
+  height: 100vh;
+  width: 100%;
+}
+
+#banner,
+#search {
+  width: 100%;
+}
+
+#postulation-form {
+  width: 60%;
+}
+
+#applicants{
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 480px) {
+  #postulation-form {
+    width: 100%;
+  }
+  #applicants{
+    flex-direction: column;
+  }
+
+}
+
