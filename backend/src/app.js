@@ -1,29 +1,36 @@
+// -------- IMPORTS --------
 const express = require('express');
 const app = express();
-
+const methodOverride = require('method-override');
 const cors = require('cors');
+
+// -------- VARIABLE ROUTES --------
 const applicantApiRoute = require('./routes/api/applicantApiRoute');
 const professionApiRoute = require('./routes/api/professionApiRoute');
 
-const methodOverride = require('method-override');
-const env = require('dotenv');
+// -------- CONFIG ENV --------
+require('dotenv').config();
 
-env.config();
-const PORT = process.env.PORT || 3000;
+// -------- CORS CONFIG --------
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  optionsSuccessStatus: 200,
+  methods: 'GET, POST, PUT, DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+};
 
+// ------- MIDDLEWARES --------
 app.use(express.static('public'));
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
 app.use(methodOverride('_method'));
-
-let corsOptions = {
-  origin: '*',
-};
 app.use(cors(corsOptions));
 
-app.listen(PORT, () => console.log(`servidor escuchando en el puerto ${PORT}`));
+// ------ SERVER LISTENING ------
+app.listen(process.env.PORT, () =>
+  console.log(`Servidor escuchando en el puerto ${process.env.PORT}`),
+);
 
+// -------- ROUTES --------
 app.use('/api/applicant', applicantApiRoute);
 app.use('/api/profession', professionApiRoute);

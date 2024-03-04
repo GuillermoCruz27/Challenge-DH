@@ -1,14 +1,19 @@
-import React from "react";
-import "../../src/assets/css/App2.css";
-import { fetchData } from "../fetchData";
-const apiDataProfessions = fetchData("http://localhost:3000/api/profession");
+import React from 'react';
+import '../../src/assets/css/App2.css';
+import { fetchData } from '../fetchData';
+const apiDataProfessions = fetchData('http://localhost:3000/api/profession');
 
 export const Postulation = () => {
   const dataProfessions = apiDataProfessions.read();
 
   return (
     <div className="d-flex justify-content-center">
-      <form method="post" action="/api/applicant" id="postulation-form" className="m-2">
+      <form
+        method="post"
+        action="/api/applicant"
+        id="postulation-form"
+        className="m-2"
+      >
         <div className="form-group mt-2">
           <label for="exampleInputEmail1">DNI</label>
           <input
@@ -136,9 +141,9 @@ export const Postulation = () => {
         <div className="form-group mt-2">
           <label for="exampleInputProfession1">Profesion</label>
           <select name="exampleInputProfession1" id="exampleInputProfession1">
-            {dataProfessions.professions.map((profession)=> 
+            {dataProfessions.data.professions.map((profession) => (
               <option value={profession.id}>{profession.name}</option>
-             )}
+            ))}
           </select>
         </div>
         <div className="nav justify-content-end">

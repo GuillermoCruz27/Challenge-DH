@@ -1,7 +1,6 @@
-import React from "react";
-import { fetchData } from "../fetchData";
-import { Suspense } from "react";
-const apiDataProfessions = fetchData("http://localhost:3000/api/profession");
+import React, { Suspense } from 'react';
+import { fetchData } from '../fetchData';
+const apiDataProfessions = fetchData('http://localhost:3000/api/profession');
 
 export const Professions = () => {
   const dataProfessions = apiDataProfessions.read();
@@ -15,7 +14,7 @@ export const Professions = () => {
           </tr>
         </thead>
         <tbody>
-          {dataProfessions.professions?.map((profession) => (
+          {dataProfessions.data.professions?.map((profession) => (
             <tr>
               <th scope="row">{profession.id}</th>
               <td>{profession.name}</td>
