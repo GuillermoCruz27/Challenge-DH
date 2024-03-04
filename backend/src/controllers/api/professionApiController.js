@@ -19,7 +19,7 @@ const professionApiController = {
       } else {
         res.status(404).json({ error: 'Sin profesiones.' });
       }
-    } catch {
+    } catch(error) {
       console.error('Error al consultar profesiones', error);
       res.status(500).json({ error: 'Error al consultar profesiones.' });
     }

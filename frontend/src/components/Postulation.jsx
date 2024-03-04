@@ -3,105 +3,158 @@ import '../../src/assets/css/App2.css';
 import { fetchData } from '../fetchData';
 const apiDataProfessions = fetchData('http://localhost:3000/api/profession');
 
-export const Postulation = () => {
+function Postulation() {
   const dataProfessions = apiDataProfessions.read();
+
+//   const [formData, setFormData] = useState({
+//     profession_id: ',',
+//     dni: '',
+//     first_name: '',
+//     last_name: '',
+//     email: '',
+//     phone_number: '',
+//     url_linkedin: '',
+//     birthdate: '',
+//     image: '',
+//     gender: ''
+//   });
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({
+//       ...formData,
+//       [name]: value
+//     });
+//   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const formData ={
+    profession_id: e.target.exampleInputProfession1.value,
+    dni: e.target.dni.value,
+    first_name: e.target.first_name.value,
+    last_name: e.target.last_name.value,
+    email: e.target.email.value,
+    phone_number: e.target.phone_number.value,
+    url_linkedin: e.target.url_linkedin.value,
+    birthdate: e.target.birthdate.value,
+    gender: e.target.gender.value,
+    image: e.target.image.value.split('\\').pop()
+  }
+  try {
+    const response = await fetch('http://localhost:3000/api/applicant', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    if (response.ok) {
+      alert('Formulario enviado correctamente');
+      e.target.reset();
+    } else {
+      alert('Error al enviar el formulario');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
   return (
     <div className="d-flex justify-content-center">
       <form
-        method="post"
-        action="/api/applicant"
+        onSubmit={handleSubmit}
         id="postulation-form"
         className="m-2"
       >
         <div className="form-group mt-2">
-          <label for="exampleInputEmail1">DNI</label>
+          <label htmlFor="dni">DNI</label>
           <input
             type="number"
             className="form-control mt-2"
-            id=""
+            id="dni"
             aria-describedby="emailHelp"
             placeholder="ingrese dni"
             name="dni"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputPassword1">Nombre</label>
+          <label htmlFor="first_name">Nombre</label>
           <input
             type="text"
             className="form-control mt-2"
-            id=""
+            id="first_name"
             placeholder="ingrese su nombre"
             name="first_name"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputPassword1">Apellido</label>
+          <label htmlFor="last_name">Apellido</label>
           <input
             type="text"
             className="form-control mt-2"
-            id=""
+            id="last_name"
             placeholder="ingrese su nombre"
             name="last_name"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputEmail1">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             className="form-control mt-2"
-            id=""
+            id="email"
             aria-describedby="emailHelp"
             placeholder="ingrese su email"
             name="email"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputEmail1">Telefono movil</label>
+          <label htmlFor="phone_number">Telefono movil</label>
           <input
             type="number"
             className="form-control mt-2"
-            id=""
+            id="phone_number"
             aria-describedby="emailHelp"
             placeholder="ingrese su telefono movil"
             name="phone_number"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputEmail1">Enlace de linkedin</label>
+          <label htmlFor="url_linkedin">Enlace de linkedin</label>
           <input
-            type="email"
+            type="text"
             className="form-control mt-2"
-            id=""
+            id="url_linkedin"
             aria-describedby="emailHelp"
             placeholder="ingrese la url a su linkedin"
             name="url_linkedin"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputEmail1">Fecha de nacimiento</label>
+          <label htmlFor="birthdate">Fecha de nacimiento</label>
           <input
             type="date"
             className="form-control mt-2"
-            id=""
+            id="birthdate"
             aria-describedby="emailHelp"
             placeholder="ingrese la url a su linkedin"
             name="birthdate"
           />
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputEmail1">Subir imagen</label>
+          <label htmlFor="image">Subir imagen</label>
           <br />
           <input
             type="file"
             className="form-control-file"
-            id="exampleFormControlFile1"
+            id="image"
             name="image"
           />
         </div>
         <div>
           <br />
-          <label className="form-check-label" for="">
+          <label className="form-check-label">
             Genero
           </label>
           <div className="form-check mt-2">
@@ -111,7 +164,7 @@ export const Postulation = () => {
               name="gender"
               id="flexRadioDefault1"
             />
-            <label className="form-check-label" for="flexRadioDefault1">
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
               Masculino
             </label>
           </div>
@@ -122,7 +175,7 @@ export const Postulation = () => {
               name="gender"
               id="flexRadioDefault2"
             />
-            <label className="form-check-label" for="flexRadioDefault2">
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
               Femenino
             </label>
           </div>
@@ -133,16 +186,16 @@ export const Postulation = () => {
               name="flexRadioDefault"
               id="flexRadioDefault3"
             />
-            <label className="form-check-label" for="flexRadioDefault3">
+            <label className="form-check-label" htmlFor="flexRadioDefault3">
               Otro
             </label>
           </div>
         </div>
         <div className="form-group mt-2">
-          <label for="exampleInputProfession1">Profesion</label>
+          <label htmlFor="exampleInputProfession1">Profesion</label>
           <select name="exampleInputProfession1" id="exampleInputProfession1">
             {dataProfessions.data.professions.map((profession) => (
-              <option value={profession.id}>{profession.name}</option>
+              <option key={profession.id} value={profession.id}>{profession.name}</option>
             ))}
           </select>
         </div>
