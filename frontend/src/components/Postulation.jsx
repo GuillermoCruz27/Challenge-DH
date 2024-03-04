@@ -6,48 +6,13 @@ const apiDataProfessions = fetchData('http://localhost:3000/api/profession');
 function Postulation() {
   const dataProfessions = apiDataProfessions.read();
 
-//   const [formData, setFormData] = useState({
-//     profession_id: ',',
-//     dni: '',
-//     first_name: '',
-//     last_name: '',
-//     email: '',
-//     phone_number: '',
-//     url_linkedin: '',
-//     birthdate: '',
-//     image: '',
-//     gender: ''
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value
-//     });
-//   };
-
 const handleSubmit = async (e) => {
   e.preventDefault();
-  const formData ={
-    profession_id: e.target.exampleInputProfession1.value,
-    dni: e.target.dni.value,
-    first_name: e.target.first_name.value,
-    last_name: e.target.last_name.value,
-    email: e.target.email.value,
-    phone_number: e.target.phone_number.value,
-    url_linkedin: e.target.url_linkedin.value,
-    birthdate: e.target.birthdate.value,
-    gender: e.target.gender.value,
-    image: e.target.image.value.split('\\').pop()
-  }
+  const formData = new FormData(e.target);
   try {
     const response = await fetch('http://localhost:3000/api/applicant', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
+      body: formData
     });
     if (response.ok) {
       alert('Formulario enviado correctamente');
@@ -66,6 +31,7 @@ const handleSubmit = async (e) => {
         onSubmit={handleSubmit}
         id="postulation-form"
         className="m-2"
+        encType="multipart/form-data"
       >
         <div className="form-group mt-2">
           <label htmlFor="dni">DNI</label>

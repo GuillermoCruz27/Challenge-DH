@@ -64,10 +64,10 @@ const applicantApiController = {
       res.status(500).json({ error: 'Error al consultar un aplicante.' });
     }
   },
-  store:async (req, res) => {
+  store:async (req, res) => {console.log(req.file)
     try {
         const nuevo = await Applicant.create({
-            profession_id: req.body.profession_id,
+            profession_id: req.body.exampleInputProfession1,
             dni: req.body.dni,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
@@ -76,7 +76,7 @@ const applicantApiController = {
             url_linkedin: req.body.url_linkedin || "",
             birthdate: req.body.birthdate,
             gender: req.body.gender,
-            image: req.body.image || ""
+            image: req.file.filename || ""
         });
         return res.status(201).json(nuevo);
     } catch (error) {
