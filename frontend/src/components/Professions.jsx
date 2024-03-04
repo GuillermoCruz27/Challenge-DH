@@ -15,7 +15,7 @@ export const Professions = () => {
         </thead>
         <tbody>
           {dataProfessions.data.professions?.map((profession) => (
-            <tr>
+            <tr key={profession.id}>
               <th scope="row">{profession.id}</th>
               <td>{profession.name}</td>
             </tr>

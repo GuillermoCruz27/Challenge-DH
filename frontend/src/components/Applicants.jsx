@@ -14,7 +14,7 @@ export const Applicants = () => {
   return (
     <div className="mt-2 row justify-content-center" id="applicants">
       {dataApplicants.data.applicants?.map((applicant) => (
-        <div className="card m-2" style={{ width: '16rem' }}>
+        <div key={applicant.id} className="card m-2" style={{ width: '16rem' }}>
           <img className="w-72" src={applicant.image} alt="image" />
           <div className="card-body">
             <h5 className="card-title">Aspirante</h5>
