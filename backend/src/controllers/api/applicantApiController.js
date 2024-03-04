@@ -64,7 +64,7 @@ const applicantApiController = {
       res.status(500).json({ error: 'Error al consultar un aplicante.' });
     }
   },
-  store:async (req, res) => {console.log(req.file)
+  store:async (req, res) => {
     try {
         const nuevo = await Applicant.create({
             profession_id: req.body.exampleInputProfession1,

@@ -129,6 +129,7 @@ const handleSubmit = async (e) => {
               type="radio"
               name="gender"
               id="flexRadioDefault1"
+              value="Masculino"
             />
             <label className="form-check-label" htmlFor="flexRadioDefault1">
               Masculino
@@ -140,6 +141,7 @@ const handleSubmit = async (e) => {
               type="radio"
               name="gender"
               id="flexRadioDefault2"
+              value="Femenino"
             />
             <label className="form-check-label" htmlFor="flexRadioDefault2">
               Femenino
@@ -149,8 +151,9 @@ const handleSubmit = async (e) => {
             <input
               className="form-check-input"
               type="radio"
-              name="flexRadioDefault"
+              name="gender"
               id="flexRadioDefault3"
+              value="Otro"
             />
             <label className="form-check-label" htmlFor="flexRadioDefault3">
               Otro
